@@ -4,7 +4,7 @@ inputs:
   singularity-version:
     description: version of singularity to install
     required: true
-    default: 3.10.1
+    default: 3.10.4
   go-version:
     description: version (or expression, e.g., >=1.17.0) of Go to install
     default: '>=1.17.0'
@@ -33,7 +33,7 @@ runs:
     - name: Install Singularity
       shell: bash
       env:
-        VERSION: ${ inputs.singularity-version }}
+        VERSION: ${{ inputs.singularity-version }}
       run: |
           wget https://github.com/sylabs/singularity/releases/download/v${VERSION}/singularity-ce-${VERSION}.tar.gz && \
           tar -xzf singularity-ce-${VERSION}.tar.gz && \
@@ -41,3 +41,7 @@ runs:
           ./mconfig && \
           make -C builddir && \
           sudo make -C builddir install
+
+    - name: Show version
+      shell: bash
+      run: singularity version
