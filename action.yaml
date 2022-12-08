@@ -33,7 +33,7 @@ runs:
     - name: Install Singularity
       shell: bash
       env:
-        VERSION: ${ inputs.singularity-version }}
+        VERSION: ${{ inputs.singularity-version }}
       run: |
           wget https://github.com/sylabs/singularity/releases/download/v${VERSION}/singularity-ce-${VERSION}.tar.gz && \
           tar -xzf singularity-ce-${VERSION}.tar.gz && \
