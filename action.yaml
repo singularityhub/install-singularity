@@ -47,7 +47,7 @@ runs:
           cd singularity-ce-${VERSION} && \
           ./mconfig && \
           make -C builddir && \
-          sudo make -C builddir install && \          
+          sudo make -C builddir install         
 
     - name: Cleanup
       if: (inputs.cleanup == true || inputs.cleanup == 'true')
@@ -58,4 +58,6 @@ runs:
 
     - name: Show version
       shell: bash
-      run: singularity version
+      run: |
+        which singularity
+        singularity version
