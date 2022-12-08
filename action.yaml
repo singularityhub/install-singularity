@@ -9,6 +9,10 @@ inputs:
     description: version (or expression, e.g., >=1.17.0) of Go to install
     default: '>=1.17.0'
     required: true
+  cleanup:
+    description: cleanup singularity directory in /tmp
+    default: true
+    required: true
 
 runs:
   using: "composite"
@@ -35,12 +39,22 @@ runs:
       env:
         VERSION: ${{ inputs.singularity-version }}
       run: |
+          # Build under isolated repository so we dont grab git version
+          cd /tmp
           wget https://github.com/sylabs/singularity/releases/download/v${VERSION}/singularity-ce-${VERSION}.tar.gz && \
           tar -xzf singularity-ce-${VERSION}.tar.gz && \
+          rm singularity-ce-${VERSION}.tar.gz && \
           cd singularity-ce-${VERSION} && \
           ./mconfig && \
           make -C builddir && \
-          sudo make -C builddir install
+          sudo make -C builddir install && \          
+
+    - name: Cleanup
+      if: (inputs.cleanup == true || inputs.cleanup == 'true')
+      shell: bash
+      env:
+        VERSION: ${{ inputs.singularity-version }} 
+      run: rm -rf /tmp/singularity-ce-${VERSION}
 
     - name: Show version
       shell: bash
