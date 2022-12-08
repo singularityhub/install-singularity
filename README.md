@@ -43,3 +43,6 @@ jobs:
 ```
 
 See the [action.yaml](action.yaml) for details.
+
+**Note** that `singularity version` is currently outputting a hash, and it's unclear if this is a bug. I will
+update it when I learn more (if there is a fix).
