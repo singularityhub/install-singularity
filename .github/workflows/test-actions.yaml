@@ -13,7 +13,7 @@ jobs:
         uses: ./
 
   install-singuarity-custom:
-    name: Install with defaults
+    name: Install with custom
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository

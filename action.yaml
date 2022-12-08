@@ -4,7 +4,7 @@ inputs:
   singularity-version:
     description: version of singularity to install
     required: true
-    default: 3.10.1
+    default: 3.10.4
   go-version:
     description: version (or expression, e.g., >=1.17.0) of Go to install
     default: '>=1.17.0'
