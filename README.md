@@ -11,6 +11,7 @@ The action has the following variables:
 |------|-------------|----------|---------|
 |singularity-version | release version of [sylabs/singularity](https://github.com/sylabs/singularity/releases/) to install | false | 3.10.4 |
 |go-version | version or range to provide to [actions/setup-go](https://github.com/actions/setup-go) | false | '>=1.17.0' |
+|cleanup| cleanup archive extracted to /tmp | false | true |
 
 And you can use as follows:
 
@@ -43,6 +44,3 @@ jobs:
 ```
 
 See the [action.yaml](action.yaml) for details.
-
-**Note** that `singularity version` is currently outputting a hash, and it's unclear if this is a bug. I will
-update it when I learn more (if there is a fix).
