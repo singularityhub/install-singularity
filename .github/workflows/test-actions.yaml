@@ -10,6 +10,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
       - name: Singularity install defaults
+        uses: ./
 
   install-singuarity-custom:
     name: Install with defaults
@@ -18,6 +19,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
       - name: Singularity install custom
+        uses: ./
         with:
           singularity-version: 3.8.4
           go-version: 1.18.0
