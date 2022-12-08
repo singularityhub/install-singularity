@@ -1,0 +1,23 @@
+name: Test Actions
+on:
+  pull_request: []
+
+jobs:
+  install-singuarity:
+    name: Install with defaults
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Singularity install defaults
+
+  install-singuarity-custom:
+    name: Install with defaults
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Singularity install custom
+        with:
+          singularity-version: 3.8.4
+          go-version: 1.18.0
