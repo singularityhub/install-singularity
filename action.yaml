@@ -36,7 +36,7 @@ runs:
             squashfs-tools \
             libseccomp-dev \
             pkg-config \
-            # dependencies for singulairyt 4.x \
+            # dependencies for singularity 4.x \
             autoconf \
             automake \
             cryptsetup \

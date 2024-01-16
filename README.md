@@ -21,7 +21,7 @@ on:
   pull_request: []
 
 jobs:
-  install-singuarity:
+  install-singularity:
     name: Install Singularity
     runs-on: ubuntu-latest
     steps:
@@ -30,7 +30,7 @@ jobs:
       - name: Singularity install with defaults
         uses: singularityhub/install-singularity@main
 
-  install-singuarity-custom:
+  install-singularity-custom:
     name: Install Singularity Custom
     runs-on: ubuntu-latest
     steps:
