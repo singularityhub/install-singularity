@@ -28,7 +28,6 @@ runs:
       run: |
           sudo apt-get update
           sudo apt-get install -y \
-            # dependencies for singularity 3.x \
             build-essential \
             libssl-dev \
             uuid-dev \
@@ -36,7 +35,6 @@ runs:
             squashfs-tools \
             libseccomp-dev \
             pkg-config \
-            # dependencies for singularity 4.x \
             autoconf \
             automake \
             cryptsetup \
