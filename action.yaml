@@ -22,8 +22,8 @@ runs:
         go-version: ${{ inputs.go-version }}
     - run: go version
       shell: bash
-  
-    - name: Install Dependencies
+    - name: Install Dependencies for v3
+      if: startsWith(inputs.singularity-version, '3')
       shell: bash
       run: |
           sudo apt-get update
@@ -34,15 +34,25 @@ runs:
             libgpgme11-dev \
             squashfs-tools \
             libseccomp-dev \
-            pkg-config \
+            pkg-config
+
+    - name: Install Dependencies for v4
+      if: startsWith(inputs.singularity-version, '4')
+      shell: bash
+      run: |
+          sudo apt-get update
+          sudo apt-get install -y \
             autoconf \
             automake \
             cryptsetup \
             git \
             libfuse-dev \
             libglib2.0-dev \
+            libseccomp-dev \
             libtool \
+            pkg-config \
             runc \
+            squashfs-tools \
             squashfs-tools-ng \
             uidmap \
             wget \
