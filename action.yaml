@@ -4,10 +4,10 @@ inputs:
   singularity-version:
     description: version of singularity to install
     required: true
-    default: 3.10.4
+    default: 4.0.0
   go-version:
-    description: version (or expression, e.g., >=1.17.0) of Go to install
-    default: '>=1.17.0'
+    description: version (or expression, e.g., >=1.21.0) of Go to install
+    default: '>=1.21.0'
     required: true
   cleanup:
     description: cleanup singularity directory in /tmp
@@ -17,22 +17,46 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - uses: actions/setup-go@v3
+    - uses: actions/setup-go@v5
       with:
         go-version: ${{ inputs.go-version }}
     - run: go version
       shell: bash
-  
-    - name: Install Dependencies
+    - name: Install Dependencies for v3
+      if: startsWith(inputs.singularity-version, '3')
       shell: bash
       run: |
           sudo apt-get update
           sudo apt-get install -y \
-             build-essential \
-             libseccomp-dev \
-             pkg-config \
-             squashfs-tools \
-             cryptsetup
+            build-essential \
+            libssl-dev \
+            uuid-dev \
+            libgpgme11-dev \
+            squashfs-tools \
+            libseccomp-dev \
+            pkg-config
+
+    - name: Install Dependencies for v4
+      if: startsWith(inputs.singularity-version, '4')
+      shell: bash
+      run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            autoconf \
+            automake \
+            cryptsetup \
+            git \
+            libfuse-dev \
+            libglib2.0-dev \
+            libseccomp-dev \
+            libtool \
+            pkg-config \
+            runc \
+            squashfs-tools \
+            squashfs-tools-ng \
+            uidmap \
+            wget \
+            zlib1g-dev
 
     - name: Install Singularity
       shell: bash
